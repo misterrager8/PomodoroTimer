@@ -33,13 +33,16 @@ const timer = () => `
 `;
 
 var paused = false;
+var theTimer;
 
 function renderTimer() {
+    stopTimer();
     $('#index').html(timer());
     document.title = '25:00';
 }
 
 function shortBreak(event) {
+    stopTimer();
     $('.active').removeClass('active');
     event.currentTarget.classList.add('active');
     $('#remaining').text('5:00');
@@ -48,6 +51,7 @@ function shortBreak(event) {
 }
 
 function longBreak(event) {
+    stopTimer();
     $('.active').removeClass('active');
     event.currentTarget.classList.add('active');
     $('#remaining').text('15:00');
@@ -63,11 +67,11 @@ function formatTime(num) {
 
 function startTimer() {
     paused = false;
-    var remaining = parseInt($('#remainingInt').val());
     $('#start').hide();
     $('#pause').show();
 
-    setInterval(function() {
+    theTimer = setInterval(function() {
+        var remaining = parseInt($('#remainingInt').val());
         if (!paused && remaining != 0) {
             remaining -= 1000;
             $('#remaining').text(formatTime(remaining));
@@ -86,4 +90,11 @@ function pauseTimer() {
 function ringAlarm() {
     var alarm = document.getElementById("alarm");
     alarm.play();
+}
+
+function stopTimer() {
+    paused = true;
+    $('#start').show();
+    $('#pause').hide();
+    clearInterval(theTimer);
 }
