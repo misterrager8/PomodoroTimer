@@ -1,4 +1,4 @@
-# YoungSurf
+# PomodoroTimer
 ---
 
 Pomodoro timer.
