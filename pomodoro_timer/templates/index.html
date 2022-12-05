@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+{% block body %}
+<title>PomodoroTimer</title>
+<nav class="navbar navbar-expand-lg">
+	<div class="container-fluid">
+		<a href="{{ url_for('index') }}" class="navbar-brand"><i class="bi bi-stopwatch"></i></a>
+		<div class="collapse navbar-collapse">
+			<ul class="navbar-nav me-auto">
+				<li class="nav-item"></li>
+			</ul>
+			<ul class="navbar-nav ms-auto">
+				<li class="nav-item">
+					<a class="nav-link" onclick="setLight()" id="dark"><i class="bi bi-sun-fill"></i></a>
+					<a class="nav-link" onclick="setDark()" id="light"><i class="bi bi-moon-fill"></i></a>
+				</li>
+			</ul>
+		</div>
+	</div>
+</nav>
+<div id="index"></div>
+{% endblock %}

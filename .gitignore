@@ -1,0 +1,6 @@
+.env
+PomodoroTimer.egg-info/
+.DS_Store
+*.pyc
+alarm.mp3
+todos.txt
