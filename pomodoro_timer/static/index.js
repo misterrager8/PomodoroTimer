@@ -17,6 +17,11 @@ function setLight() {
     $('#dark').hide();
 }
 
+var paused = false;
+var theTimer;
+var settings;
+getSettings();
+
 const timer = () => `
 <div class="text-center">
     <div>
@@ -24,45 +29,42 @@ const timer = () => `
         <a class="btn text-secondary" onclick="shortBreak(event)">Short Break</a>
         <a class="btn text-secondary" onclick="longBreak(event)">Long Break</a>
     </div>
-    <p style="font-size: 5em" id="remaining">25:00</p>
+    <p style="font-size: 5em" id="remaining">${formatTime(settings['pomodoro_default'])}</p>
     <a id="start" onclick="startTimer()" class="btn btn-lg text-secondary">START</a>
     <a id="pause" style="display: none" onclick="pauseTimer()" class="btn btn-lg text-secondary">PAUSE</a>
 </div>
-<input id="remainingInt" type="hidden" value="${25 * 60 * 1000}">
+<input id="remainingInt" type="hidden" value="${settings['pomodoro_default']}">
 <audio id="alarm"><source src="static/alarm.mp3" type="audio/mpeg"></source></audio>
 `;
-
-var paused = false;
-var theTimer;
 
 function renderTimer() {
     stopTimer();
     $('#index').html(timer());
-    document.title = '25:00';
+    document.title = formatTime(settings['pomodoro_default']);
 }
 
 function shortBreak(event) {
     stopTimer();
     $('.active').removeClass('active');
     event.currentTarget.classList.add('active');
-    $('#remaining').text('5:00');
-    document.title = '5:00';
-    $('#remainingInt').val(5 * 60 * 1000);
+    $('#remaining').text(formatTime(settings['short_break_default']));
+    document.title = formatTime(settings['short_break_default']);
+    $('#remainingInt').val(settings['short_break_default']);
 }
 
 function longBreak(event) {
     stopTimer();
     $('.active').removeClass('active');
     event.currentTarget.classList.add('active');
-    $('#remaining').text('15:00');
-    document.title = '15:00';
-    $('#remainingInt').val(15 * 60 * 1000);
+    $('#remaining').text(formatTime(settings['long_break_default']));
+    document.title = formatTime(settings['long_break_default']);
+    $('#remainingInt').val(settings['long_break_default']);
 }
 
 function formatTime(num) {
     minutes = Math.floor((num % (1000 * 60 * 60)) / (1000 * 60));
     seconds = Math.floor((num % (1000 * 60)) / 1000);
-    return `${minutes}:${String(seconds).padStart(2, '0')}`;
+    return `${String(minutes).padStart(2, '0')}:${String(seconds).padStart(2, '0')}`;
 }
 
 function startTimer() {
@@ -97,4 +99,22 @@ function stopTimer() {
     $('#start').show();
     $('#pause').hide();
     clearInterval(theTimer);
+}
+
+function getSettings() {
+    $.get('settings', function(data) {
+        settings = data;
+    });
+}
+
+function renderSettings() {
+    $('#index').html('<a onclick="renderTimer()" class="btn btn-sm text-secondary"><i class="bi bi-arrow-left"></i> Back</a>');
+    for (x in settings) {
+        $('#index').append(`
+            <div class="form-floating mb-1">
+                <input value=${settings[x]} autocomplete="off" class="form-control border-0" name="${x}">
+                <label for="${settings[x]}">${x}</label>
+            </div>
+            `);
+    }
 }
