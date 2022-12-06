@@ -16,4 +16,4 @@ def run(switch: bool):
     app = create_app(config)
     if switch:
         webbrowser.open(f"http://localhost:{config.PORT}")
-    app.run()
+    app.run(port=config.PORT)

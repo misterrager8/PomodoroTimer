@@ -1,5 +1,6 @@
 $(document).ready(function() {
     localStorage.getItem('PomodoroTimer') === 'dark' ? setDark() : setLight();
+    getSettings();
     renderTimer();
 });
 
