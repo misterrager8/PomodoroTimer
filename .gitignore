@@ -1,6 +1,4 @@
-.env
-PomodoroTimer.egg-info/
-.DS_Store
-*.pyc
-alarm.mp3
+node_modules/
 todos.json
+.DS_Store
+build/

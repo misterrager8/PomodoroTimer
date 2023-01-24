@@ -1,0 +1,43 @@
+:root, html[data-theme='light'] {
+	--primary-bg: #cccccc;
+	--primary-txt: #1a1a1a;
+}
+
+html[data-theme='dark'] {
+	--primary-bg: #1a1a1a;
+	--primary-txt: #cccccc;
+}
+
+html[data-theme='charcoal'] {
+    --primary-bg: #545454;
+    --primary-txt: #EBEBEB;
+}
+
+html[data-theme='darkgold'] {
+    --primary-bg: #B68F40;
+    --primary-txt: #F4EEE1;
+}
+
+html[data-theme='oxford'] {
+    --primary-bg: #061A40;
+    --primary-txt: #C7D9FA;
+}
+
+body {
+	background-color: var(--primary-bg);
+	color: var(--primary-txt);
+}
+
+.btn-outline-secondary {
+	color: var(--primary-txt);
+	border-color: var(--primary-txt);
+}
+
+.btn-outline-secondary:hover {
+	background-color: var(--primary-txt);
+	color: var(--primary-bg);
+}
+
+.btn, label {
+	letter-spacing: 1px;
+}
