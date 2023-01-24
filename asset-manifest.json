@@ -1,0 +1,15 @@
+{
+  "files": {
+    "main.css": "/PomodoroTimer/static/css/main.fc40a895.css",
+    "main.js": "/PomodoroTimer/static/js/main.5be0e300.js",
+    "static/media/bootstrap-icons.woff?": "/PomodoroTimer/static/media/bootstrap-icons.6959d0d983ee318f8880.woff",
+    "static/media/bootstrap-icons.woff2?": "/PomodoroTimer/static/media/bootstrap-icons.b2e5aab643c6f0fd2da6.woff2",
+    "index.html": "/PomodoroTimer/index.html",
+    "main.fc40a895.css.map": "/PomodoroTimer/static/css/main.fc40a895.css.map",
+    "main.5be0e300.js.map": "/PomodoroTimer/static/js/main.5be0e300.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.fc40a895.css",
+    "static/js/main.5be0e300.js"
+  ]
+}
