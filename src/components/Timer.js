@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-
+import audio from './alarm.mp3';
 
 var x; 
 
@@ -18,7 +18,8 @@ function Timer() {
 		document.getElementById('rem').textContent = formatTime(length);
 		document.title = formatTime(length);
 		if (length == 0) {
-			alert('done');
+			let alarm = document.getElementById('alarm');
+			alarm.play();
 			clearInterval(x);
 			setRunning(false);
 		}
@@ -51,6 +52,7 @@ function Timer() {
 				</span>
 				)}
 			</div>
+			<audio id="alarm"><source src={audio} type="audio/mp3"></source></audio>
 		</div>
 		);
 }
