@@ -6,6 +6,7 @@ function Themes() {
 	const changeTheme = (theme_) => {
 		localStorage.setItem('PomodoroTimer', theme_);
 		document.documentElement.setAttribute('data-theme', theme_);
+		setTheme(theme_);
 	}
 
 	useEffect(() => {
@@ -13,12 +14,16 @@ function Themes() {
 	}, []);
 
 	return (
-		<div className="btn-group btn-group-sm col-4 offset-4">
-			<a className="btn btn-outline-secondary text-capitalize" onClick={() => changeTheme('dark')}><i className="bi bi-paint-bucket"></i> dark</a>
-			<a className="btn btn-outline-secondary text-capitalize" onClick={() => changeTheme('light')}><i className="bi bi-paint-bucket"></i> light</a>
-			<a className="btn btn-outline-secondary text-capitalize" onClick={() => changeTheme('charcoal')}><i className="bi bi-paint-bucket"></i> charcoal</a>
-			<a className="btn btn-outline-secondary text-capitalize" onClick={() => changeTheme('darkgold')}><i className="bi bi-paint-bucket"></i> darkgold</a>
-			<a className="btn btn-outline-secondary text-capitalize" onClick={() => changeTheme('oxford')}><i className="bi bi-paint-bucket"></i> oxford</a>
+		<div className="">
+			<a className="btn btn-sm btn-outline-secondary text-capitalize dropdown-toggle" data-bs-target="#themes" data-bs-toggle="dropdown"><i className="bi bi-paint-bucket"></i> {theme}</a>
+			<div className="dropdown-menu text-center" id="themes">
+				<a className="dropdown-item text-capitalize" onClick={() => changeTheme('dark')}> dark</a>
+				<a className="dropdown-item text-capitalize" onClick={() => changeTheme('light')}> light</a>
+				<a className="dropdown-item text-capitalize" onClick={() => changeTheme('charcoal')}> charcoal</a>
+				<a className="dropdown-item text-capitalize" onClick={() => changeTheme('pine')}> pine</a>
+				<a className="dropdown-item text-capitalize" onClick={() => changeTheme('maroon')}> maroon</a>
+				<a className="dropdown-item text-capitalize" onClick={() => changeTheme('deepspace')}> deepspace</a>
+			</div>
 		</div>
 		);
 }
