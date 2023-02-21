@@ -9,7 +9,7 @@ import audio from './alarm.mp3';
 import {useState, useEffect} from 'react';
 
 function App() {
-    const [sessionLength, setSessionLength] = useState(.1);
+    const [sessionLength, setSessionLength] = useState(25);
     const [shortBreakLength, setShortBreakLength] = useState(5);
     const [longBreakLength, setLongBreakLength] = useState(15);
 
