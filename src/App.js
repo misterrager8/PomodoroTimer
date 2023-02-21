@@ -1,13 +1,23 @@
+import 'bootstrap/dist/css/bootstrap.css';
+import 'bootstrap/dist/js/bootstrap.js';
+import 'bootstrap-icons/font/bootstrap-icons.css';
+import $ from 'jquery';
+
+import audio from './alarm.mp3';
+
+
+import {useState, useEffect} from 'react';
+
 function App() {
-    const [sessionLength, setSessionLength] = React.useState(25);
-    const [shortBreakLength, setShortBreakLength] = React.useState(5);
-    const [longBreakLength, setLongBreakLength] = React.useState(15);
+    const [sessionLength, setSessionLength] = useState(.1);
+    const [shortBreakLength, setShortBreakLength] = useState(5);
+    const [longBreakLength, setLongBreakLength] = useState(15);
 
-    const [currentLength, setCurrentLength] = React.useState(sessionLength*60*1000);
+    const [currentLength, setCurrentLength] = useState(sessionLength*60*1000);
 
-    const [timer, setTimer] = React.useState([]);
+    const [timer, setTimer] = useState([]);
 
-    const [running, setRunning] = React.useState(false);
+    const [running, setRunning] = useState(false);
 
     const startTimer = () => {
         setRunning(true);
@@ -33,14 +43,14 @@ function App() {
         return `${String(minutes).padStart(2, '0')}:${String(seconds).padStart(2, '0')}`;
     }
 
-    React.useEffect(() => {
+    useEffect(() => {
         if (currentLength == 0) {
             stopTimer();
             let alarm = document.getElementById('alarm');
             alarm.play();
             setTimeout(function() {
-                alarm.pause();
                 alarm.currentTime = 0;
+                alarm.pause();
             }, 7500);
         }
     }, [currentLength]);
@@ -58,10 +68,9 @@ function App() {
                 {running && <a onClick={() => pauseTimer()} className="btn btn-outline-primary">Pause</a>}
                 {running && <a onClick={() => stopTimer()} className="btn btn-outline-danger">Stop</a>}
             </div>
-            <audio id="alarm"><source src="static/alarm.mp3" type="audio/mp3"></source></audio>
+            <audio id="alarm"><source src={audio} type="audio/mp3"></source></audio>
         </div>
     );
 }
 
-const root = ReactDOM.createRoot(document.getElementById('root'));
-root.render(<App/>);
+export default App;

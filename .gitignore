@@ -1,5 +1,4 @@
+node_modules/
 todos.json
 .DS_Store
-.env
-*.pyc
-PomodoroTimer.egg-info/
+build/
