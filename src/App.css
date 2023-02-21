@@ -28,7 +28,7 @@ html[data-theme='deepspace'] {
     --primary-txt: #DCF2F9;
 }
 
-body, .dropdown-menu, .dropdown-item {
+body, .dropdown-menu, .dropdown-item, .modal-content, .form-control, .form-control:focus {
 	background-color: var(--primary-bg);
 	color: var(--primary-txt);
 }
